@@ -363,9 +363,51 @@ const pageHTMLcodes = [
             </div>
         </div>`,
     `
-<div class="about_info">
-                <a href="/test">Test</a>
-            </div>`,
+        <div class="page_first_info">
+            <div class="page_name">
+                Portfolio
+            </div>
+            <div class="portfolio">
+                <div class="title_info">
+                    my works
+                </div>
+                <div class="portfolio_box">
+                    <div class="portfolio_filter_box">
+                        <div class="filter_btn">
+                            All
+                        </div>
+                        <div class="filter_btn">
+                            Web
+                        </div>
+                        <div class="filter_btn">
+                            Video
+                        </div>
+                    </div>
+                    <div class="project_box">
+                        <img src="/static/img/gl.jpg" alt="">
+                        <div class="project_links">
+                            <a href="#" class="site_link"><i class="fa-solid fa-arrow-up-right-from-square"></i> visit site</a>
+                            <a href="#" class="view_project">View the project</a>
+                        </div>
+                    </div>
+                    <div class="project_box">
+                        <img src="/static/img/gl.jpg" alt="">
+                        <div class="project_links">
+                            <a href="#" class="site_link"><i class="fa-solid fa-arrow-up-right-from-square"></i> visit site</a>
+                            <a href="#" class="view_project">View the project</a>
+                        </div>
+                    </div>
+                    <div class="project_box">
+                        <img src="/static/img/gl.jpg" alt="">
+                        <div class="project_links">
+                            <a href="#" class="site_link"><i class="fa-solid fa-arrow-up-right-from-square"></i> visit site</a>
+                            <a href="#" class="view_project">View the project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `,
     `
 <div class="page_first_info">
             <div class="page_name">
@@ -484,6 +526,18 @@ pageBtn.forEach((a, index) => {
             `
         } else {
             editPage(index)
+            if (index === 4) {
+                let btn = document.querySelectorAll('.filter_btn')
+                btn[0].style.background = 'var(--primary-color)'
+                btn.forEach(button => {
+                    button.addEventListener('click', () => {
+                        btn.forEach(l => {
+                            l.style.background = '#363636'
+                        })
+                        button.style.background = 'var(--primary-color)'
+                    })
+                })
+            }
         }
     })
 })
