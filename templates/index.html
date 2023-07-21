@@ -45,30 +45,32 @@
 </div>
 
 <section class="all">
-    <section class="page">
-        <div class="page_sections" style="opacity: 1;">
-            <div class="social_profiles" style="margin-top: -150px;">
-                <div class="profile_box">
-                    <a href="https://t.me/star_none" target="_blank"><i class="fa-brands fa-telegram"></i></a>
-                </div>
-                <div class="profile_box">
-                    <a href="https://t.me/star_none" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                </div>
-                <div class="profile_box">
-                    <a href="https://t.me/star_none" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                </div>
-                <div class="profile_box">
-                    <a href="https://t.me/star_none" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                </div>
-                <div class="profile_box">
-                    <a href="https://t.me/star_none" target="_blank"><i class="fa-brands fa-github"></i></a>
-                </div>
-                <div class="profile_box">
-                    <a href="https://t.me/star_none" target="_blank"><i class="fa-brands fa-google"></i></a>
+    {% block project %}
+        <section class="page">
+            <div class="page_sections" style="opacity: 1;">
+                <div class="social_profiles" style="margin-top: -150px;">
+                    <div class="profile_box">
+                        <a href="https://t.me/star_none" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                    </div>
+                    <div class="profile_box">
+                        <a href="https://t.me/star_none" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                    <div class="profile_box">
+                        <a href="https://t.me/star_none" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                    <div class="profile_box">
+                        <a href="https://t.me/star_none" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                    <div class="profile_box">
+                        <a href="https://t.me/star_none" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                    <div class="profile_box">
+                        <a href="https://t.me/star_none" target="_blank"><i class="fa-brands fa-google"></i></a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    {% endblock %}
     <header class="headerA">
         <div class="nav_logo100">
             Kholmatov Ramzidin
@@ -81,7 +83,7 @@
             </p>
         </div>
         <div class="nav_linkV1">
-            <a href="#">Home</a>
+            <a href="{{ url_for('index') }}">Home</a>
             <a href="#">About</a>
             <a href="#">Resume</a>
             <a href="#">Services</a>

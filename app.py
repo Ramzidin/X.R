@@ -17,24 +17,26 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 
+class User(db.Model):
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    surname = Column(String)
+    job = Column(String)
+    location = Column(String)
+    birthday = Column(String)
+    phone = Column(String)
+    city = Column(String)
+    age = Column(Integer)
+    degree = Column(String)
+    email = Column(String)
+    text_first = Column(String)  # max length = 102
+    text_second = Column(String
+                         )
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
-
-
-@app.route('/test')
-def test():
-    return render_template('test.html')
-
-
-@app.route('/test1')
-def test1():
-    return render_template('test1.html')
-
-
-@app.route('/test2')
-def test2():
-    return render_template('test2.html')
 
 
 if __name__ == '__main__':

@@ -372,6 +372,7 @@ const pageHTMLcodes = [
                     my works
                 </div>
                 <div class="portfolio_box">
+                    <div class="after_portfolio"></div><div class="before_portfolio"></div>
                     <div class="portfolio_filter_box">
                         <div class="filter_btn">
                             All
@@ -388,6 +389,7 @@ const pageHTMLcodes = [
                         <div class="project_links">
                             <a href="#" class="site_link"><i class="fa-solid fa-arrow-up-right-from-square"></i> visit site</a>
                             <a href="#" class="view_project">View the project</a>
+                            <div class="project_name_none" style="display: none">Instagram</div>
                         </div>
                     </div>
                     <div class="project_box">
@@ -395,6 +397,7 @@ const pageHTMLcodes = [
                         <div class="project_links">
                             <a href="#" class="site_link"><i class="fa-solid fa-arrow-up-right-from-square"></i> visit site</a>
                             <a href="#" class="view_project">View the project</a>
+                            <div class="project_name_none" style="display: none">CarHUB</div>
                         </div>
                     </div>
                     <div class="project_box">
@@ -402,6 +405,7 @@ const pageHTMLcodes = [
                         <div class="project_links">
                             <a href="#" class="site_link"><i class="fa-solid fa-arrow-up-right-from-square"></i> visit site</a>
                             <a href="#" class="view_project">View the project</a>
+                            <div class="project_name_none" style="display: none">MusicMAX</div>
                         </div>
                     </div>
                 </div>
@@ -527,14 +531,25 @@ pageBtn.forEach((a, index) => {
         } else {
             editPage(index)
             if (index === 4) {
-                let btn = document.querySelectorAll('.filter_btn')
+                let btn = document.querySelectorAll('.filter_btn'),
+                    project_pages = document.querySelectorAll('.view_project')
                 btn[0].style.background = 'var(--primary-color)'
                 btn.forEach(button => {
                     button.addEventListener('click', () => {
                         btn.forEach(l => {
                             l.style.background = '#363636'
                         })
+                        let after = document.querySelector('.after_portfolio'),
+                            before = document.querySelector('.before_portfolio')
+                        after.style.animationPlayState = 'play'
+                        before.style.animationPlayState = 'play'
                         button.style.background = 'var(--primary-color)'
+                    })
+                })
+                project_pages.forEach((site, index) => {
+                    site.addEventListener('click', () => {
+                        let name_site = document.querySelectorAll('.project_name_none')[index]
+                        edit_page_for_project(name_site.innerHTML)
                     })
                 })
             }
@@ -555,6 +570,29 @@ function editPage(index) {
         sectionPage2.style.animationName = 'pageToPageV1'
         sectionPage1.remove()
     }
+
+    let page2 = document.querySelector('.page')
+    page2.classList.remove('height')
+}
+
+function edit_page_for_project(name) {
+    page.innerHTML += `
+            ${project_page}
+    `
+    let sectionPage1 = document.querySelectorAll('.page_sections')[0],
+        sectionPage2 = document.querySelectorAll('.page_sections')[1],
+        page1 = document.querySelector('.page')
+    sectionPage1.style.animationName = 'pageToPageV2'
+    if (sectionPage2) {
+        sectionPage2.style.animationName = 'pageToPageV1'
+        sectionPage1.remove()
+    }
+    page1.classList.add('height')
+    sectionPage1.style.animationName = 'pageToPageV1'
+
+    let title_name = document.querySelector('.title_info p')
+    title_name.innerHTML = name
+
 }
 
 function editStyleInEditPageHome(index) {
@@ -575,3 +613,43 @@ function editStyleInEditPageHome(index) {
         plusBox.className = 'plus_boxN'
     }
 }
+
+const project_page =
+    `
+        <div class="page_sections padding">
+            <div class="page_first_info padding2">
+                <div class="page_name">
+                    Portfolio
+                </div>
+                <div class="portfolio height">
+                    <div class="title_info" style="text-transform: none;display: flex;align-items: center;gap: 15px">
+                        <p style="font-size: inherit; font-family: inherit; color: inherit;"></p>
+                        <a href="#" class="site_link hover_link" style="align-self: flex-start">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> visit site
+                    </a>
+                    </div>
+                    <div class="resume_boxes">
+                        <div class="project_info_box">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/hGIW2fDb0jg"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                        </div>
+                        <div class="project_info_box">
+                            <p class="codepen" data-height="564" data-default-tab="html,result"
+                               data-slug-hash="jOmaBQK"
+                               data-user="gayane-gasparyan"
+                               style="height: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+                            <span>See the Pen <a href="https://codepen.io/gayane-gasparyan/pen/jOmaBQK">
+                              Magic Card</a> by Gayane Gasparyan (<a href="https://codepen.io/gayane-gasparyan">@gayane-gasparyan</a>)
+                              on <a href="https://codepen.io">CodePen</a>.</span>
+                            </p>
+                            <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="project_page_absolute" style="display: none;">
+        </div>
+`

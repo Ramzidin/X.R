@@ -116,6 +116,11 @@ body {
     opacity: 0;
 }
 
+.padding {
+    padding: 150px 40px 35px 40px;
+
+}
+
 .all::-webkit-scrollbar {
     width: 0;
 }
@@ -262,6 +267,10 @@ header a:hover::after {
     position: relative;
 }
 
+.padding2 {
+    padding: 30px;
+}
+
 .info {
     width: 100%;
     display: flex;
@@ -376,6 +385,14 @@ header a:hover::after {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.portfolio .resume_boxes {
+    margin-top: 14px;
+    padding: 30px;
+    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.90);
+    height: 100%;
 }
 
 .resume_box {
@@ -526,6 +543,10 @@ header a:hover::after {
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
+}
+
+.height {
+    height: 100%;
 }
 
 .services_boxes {
@@ -1058,27 +1079,28 @@ textarea {
     gap: 2.5%;
 }
 
-.portfolio_box:after, .portfolio_box:before {
-    content: '';
+.after_portfolio, .before_portfolio {
     position: absolute;
     top: 0;
-    left: 0;
     width: 1px;
     height: 1px;
     background: var(--primary-color);
     box-shadow: 0 0 5px 5px var(--primary-color);
-    /*animation-duration: 1s;*/
-    /*animation-fill-mode: forwards;*/
-    /*animation-timing-function: ease;*/
-    animation: 5s linear infinite;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
 }
 
-.portfolio_box:after {
+.after_portfolio {
     animation-name: border_animation_after;
+    right: 50%;
+    transform: translate(-50%, 0);
 }
 
-.portfolio_box:before {
+.before_portfolio {
     animation-name: border_animation_before;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 
@@ -1086,19 +1108,22 @@ textarea {
     0% {
         opacity: 0;
     }
+    1% {
+        opacity: 1;
+    }
     30% {
         top: 0;
         right: 0;
     }
-    60% {
-        bottom: 0;
+    65% {
+        top: 100%;
         right: 0;
     }
     99% {
         opacity: 1;
     }
     100% {
-        bottom: 0;
+        top: 100%;
         right: 50%;
         transform: translate(-50%, 0);
         opacity: 0;
@@ -1109,19 +1134,22 @@ textarea {
     0% {
         opacity: 0;
     }
+    1% {
+        opacity: 1;
+    }
     30% {
         top: 0;
         left: 0;
     }
-    60% {
-        bottom: 0;
+    65% {
+        top: 100%;
         left: 0;
     }
     99% {
         opacity: 1;
     }
     100% {
-        bottom: 0;
+        top: 100%;
         left: 50%;
         transform: translate(-50%, 0);
         opacity: 0;
@@ -1150,7 +1178,7 @@ textarea {
     align-items: center;
     font-family: var(--font-solway);
     font-size: 40px;
-    transition: .3s all ease;
+    transition: .2s all ease;
     cursor: pointer;
 }
 
@@ -1256,4 +1284,9 @@ textarea {
 
 .site_link:hover:after, .view_project:hover:after {
     opacity: 1;
+}
+
+.project_info_box {
+    width: calc(100% / 2 - 20px);
+    height: 100%;
 }
