@@ -30,8 +30,10 @@ class User(db.Model):
     degree = Column(String)
     email = Column(String)
     text_first = Column(String)  # max length = 102
-    text_second = Column(String
-                         )
+    text_second = Column(String)
+    # skills =
+
+
 
 
 @app.route('/')

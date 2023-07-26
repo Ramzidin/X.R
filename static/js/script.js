@@ -372,7 +372,7 @@ const pageHTMLcodes = [
                     my works
                 </div>
                 <div class="portfolio_box">
-                    <div class="after_portfolio"></div><div class="before_portfolio"></div>
+                    <div class="none"></div><div class="none"></div>
                     <div class="portfolio_filter_box">
                         <div class="filter_btn">
                             All
@@ -498,6 +498,9 @@ pageBtn[0].style.color = 'var(--primary-color)'
 
 pageBtn.forEach((a, index) => {
     a.addEventListener('click', () => {
+        let check = false
+        if (a.style.color !== 'var(--primary-color)')
+            check = true
         pageBtn.forEach(link => {
             link.style.color = '#ddd'
         })
@@ -529,21 +532,34 @@ pageBtn.forEach((a, index) => {
                 </div>  
             `
         } else {
-            editPage(index)
+            if (check)
+                editPage(index)
             if (index === 4) {
                 let btn = document.querySelectorAll('.filter_btn'),
                     project_pages = document.querySelectorAll('.view_project')
                 btn[0].style.background = 'var(--primary-color)'
                 btn.forEach(button => {
                     button.addEventListener('click', () => {
-                        btn.forEach(l => {
-                            l.style.background = '#363636'
-                        })
-                        let after = document.querySelector('.after_portfolio'),
-                            before = document.querySelector('.before_portfolio')
-                        after.style.animationPlayState = 'play'
-                        before.style.animationPlayState = 'play'
+                        let check = false
+                        if (button.style.background !== 'var(--primary-color)') {
+                            check = true
+                            btn.forEach(l => {
+                                l.style.background = '#363636'
+                            })
+                        }
                         button.style.background = 'var(--primary-color)'
+                        if (check) {
+                            let after = document.querySelectorAll('.none')[0],
+                                before = document.querySelectorAll('.none')[1]
+                            after.className = 'after_portfolio'
+                            before.className = 'before_portfolio'
+                            setTimeout(classNameNone, 1000)
+
+                            function classNameNone() {
+                                after.className = 'none'
+                                before.className = 'none'
+                            }
+                        }
                     })
                 })
                 project_pages.forEach((site, index) => {
@@ -566,12 +582,26 @@ function editPage(index) {
     let sectionPage1 = document.querySelectorAll('.page_sections')[0],
         sectionPage2 = document.querySelectorAll('.page_sections')[1]
     sectionPage1.style.animationName = 'pageToPageV2'
+    sectionPage1.style.position = 'absolute'
     if (sectionPage2) {
         sectionPage2.style.animationName = 'pageToPageV1'
-        sectionPage1.remove()
+        let headerNav = document.querySelector('.none_click')
+        headerNav.style.zIndex = '2'
+        setTimeout(timeLoad, 300)
+
+        function timeLoad() {
+            headerNav.style.zIndex = '-1'
+            let sectionPage = document.querySelectorAll('.page_sections')
+            sectionPage.forEach(page2 => {
+                if (page2 !== sectionPage2) {
+                    page2.remove()
+                }
+            })
+        }
     }
 
-    let page2 = document.querySelector('.page')
+    let page2 = document.querySelector('.page'), allScroll = document.querySelector('.all')
+    allScroll.scroll(0, 0)
     page2.classList.remove('height')
 }
 
